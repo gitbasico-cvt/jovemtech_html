@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Listar Usuários</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f0f8ff;
+    }
+    h1 {
+      color: #004080;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #004080;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #004080;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #e6f2ff;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #00264d;
+    }
+    #out {
+      margin-top: 15px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Listar Usuários</h1>
+  <button id="btn">Consultar</button>
+
+  <table id="tabela"></table>
+  <pre id="out"></pre>
+
+  <script>
+    document.getElementById("btn").onclick = async () => {
+      const tabela = document.getElementById("tabela");
+      const out = document.getElementById("out");
+      out.textContent = "";
+      tabela.innerHTML = "";
+
+      try {
+        const res = await fetch("https://jovemtech.criesites.shop/api/consultaLogin.php");
+        const data = await res.json();
+
+        if (!data.ok) {
+          out.textContent = "Erro: " + data.error;
+          return;
+        }
+
+        if (data.data.length === 0) {
+          out.textContent = "Nenhum usuário encontrado.";
+          return;
+        }
+
+        // Cabeçalho da tabela
+        tabela.innerHTML = `
+          <tr>
+            <th>ID</th>
+            <th>Login</th>
+            <th>Perfil</th>
+            <th>Senha</th>
+            <th>Criado em</th>
+          </tr>
+        `;
+
+        // Preenche os dados
+        data.data.forEach(u => {
+          tabela.innerHTML += `
+            <tr>
+              <td>${u.idLogin}</td>
+              <td>${u.login}</td>
+              <td>${u.perfil}</td>
+              <td>${u.senha}</td>
+              <td>${u.data_cadastro}</td>
+            </tr>
+          `;
+        });
+
+      } catch (err) {
+        out.textContent = "Falha na requisição: " + err.message;
+      }
+    };
+  </script>
+
+</body>
+</html>
