@@ -1,0 +1,288 @@
+/*---- Styles de index.html ----*/
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f8ff; /* cor de fundo clara */
+      color: #000; /* texto preto */
+    }
+
+    header {
+      background: #004080; /* azul escuro */
+      color: white;
+      padding: 10px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: #cce6ff; /* azul claro */
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .cta a {
+      display: inline-block;
+      background: #004080;
+      color: white;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      padding: 15px;
+      background: white;
+    }
+
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    /*---- Styles de destinos.html ----*/
+     main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    h1,h2 {
+      text-align: center;
+    }
+
+     .grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+     article {
+      border: 1px solid #008060;
+      border-radius: 8px;
+      padding: 10px;
+      background: #ccefe0;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .tags {
+      margin-top: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #008060;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-right: 4px;
+    }
+
+    details {
+      margin-top: 10px;
+      padding: 6px;
+      border-top: 1px dashed #008060;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /*---- Styles de pacotes.html ----*/
+      /* Tabela */
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin-bottom: 20px; 
+    }
+
+    th, td { 
+      border: 1px solid #ccc; 
+      padding: 8px; 
+      text-align: left; 
+    }
+
+    th { 
+      background: #6a0dad; 
+      color: white; 
+    }
+
+    tr:nth-child(even) { 
+      background: #f0e6ff; 
+    }
+
+    /* Links */
+    a { 
+      color: #8b5cf6; 
+      text-decoration: none; 
+    }
+    a:hover { 
+      text-decoration: underline; 
+    }
+
+    /* Aside e indicadores */
+    aside { 
+      border: 1px dashed #8b5cf6; 
+      padding: 12px; 
+      border-radius: 8px; 
+      margin-top: 16px; 
+      background: #f4f0ff; 
+    }
+
+    meter, progress { 
+      width: 100%; 
+      height: 16px; 
+      margin-top: 4px; 
+    }
+
+    nav .menu a { 
+      padding: 6px 12px; 
+      margin-left: 10px; 
+      border-radius: 8px; 
+    }   
+
+    /*---- Styles de sobre.html ----*/
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 16px;
+    }
+
+    nav .brand {
+      font-weight: 800;
+      color: #f59e0b;
+    }
+
+    nav .menu a:hover {
+        background: #2a1a06;
+        color: #f3d4a6;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 6px 16px;
+    }
+    dt {
+      font-weight: 700;
+      color: #f3d4a6;
+    }
+    address {
+      font-style: normal;
+    }
+    blockquote {
+      border-left: 4px solid #f59e0b;
+      background: #221504;
+      padding: 8px 12px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      color: #f3d4a6;
+    }
+    .small {
+      font-size: 12px;
+      color: #f3d4a6;
+    }
+
+    /*---- Styles de contato.html ----*/
+
+    form {
+      background: #cce6e6;
+      padding: 15px;
+      border: 1px solid #008080;
+      border-radius: 8px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #008080;
+      border-radius: 4px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .row > div {
+      flex: 1;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: #008080;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #006666;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
