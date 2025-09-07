@@ -37,7 +37,7 @@ document.getElementById("btnConsultar").onclick = async () => {
   tbody.innerHTML = ""; // limpa tabela antes de inserir novos dados
 
   try {
-    const res = await fetch("consultaUsuario.php");
+    const res = await fetch("https://jovemtech.criesites.shop/api/consultaUsuario.php");
     const data = await res.json();
 
     if (!data.ok) {
@@ -72,3 +72,4 @@ document.getElementById("btnConsultar").onclick = async () => {
 
 </body>
 </html>
+
