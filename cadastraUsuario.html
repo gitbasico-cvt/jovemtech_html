@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Usuário</title>
+</head>
+<body>
+
+<h1>Cadastro de Usuário</h1>
+
+<label>CPF:</label>
+<input type="text" id="cpf">
+
+<label>Nome:</label>
+<input type="text" id="nome">
+
+<label>Sexo:</label>
+<select id="sexo">
+  <option value="M">Masculino</option>
+  <option value="F">Feminino</option>
+</select>
+
+<label>Número:</label>
+<input type="text" id="numero">
+
+<label>Bairro:</label>
+<input type="text" id="bairro">
+
+<label>Estado:</label>
+<input type="text" id="estado">
+
+<label>Município:</label>
+<input type="text" id="municipio">
+
+<label>CEP:</label>
+<input type="text" id="cep">
+
+<label>Telefone:</label>
+<input type="text" id="telefone">
+
+<button id="btnInserir">Cadastrar</button>
+
+<pre id="out"></pre>
+
+<script>
+document.getElementById("btnInserir").onclick = async () => {
+  const cpf       = document.getElementById("cpf").value.trim();
+  const nome      = document.getElementById("nome").value.trim();
+  const sexo      = document.getElementById("sexo").value;
+  const numero    = document.getElementById("numero").value.trim();
+  const bairro    = document.getElementById("bairro").value.trim();
+  const estado    = document.getElementById("estado").value.trim();
+  const municipio = document.getElementById("municipio").value.trim();
+  const cep       = document.getElementById("cep").value.trim();
+  const telefone  = document.getElementById("telefone").value.trim();
+  const out       = document.getElementById("out");
+  out.textContent = "";
+
+  if (!cpf || !nome || !sexo || !numero || !bairro || !estado || !municipio || !cep || !telefone) {
+    out.textContent = "Preencha todos os campos.";
+    return;
+  }
+
+  try {
+    const res = await fetch("https://jovemtech.criesites.shop/api/inserirUsuario.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cpf, nome, sexo, numero, bairro, estado, municipio, cep, telefone })
+    });
+    const data = await res.json();
+
+    if (!data.ok) {
+      out.textContent = "Erro: " + data.error;
+      return;
+    }
+
+    // Usuário cadastrado com sucesso
+    alert(`Usuário cadastrado com sucesso! ID: ${data.idUsuario}`);
+    window.location.href = "login.html"; // Redireciona para lista de usuários
+
+  } catch (err) {
+    out.textContent = "Falha na requisição: " + err.message;
+  }
+};
+</script>
+
+</body>
+</html>

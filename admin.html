@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Administração</title>
+</head>
+<body>
+    <script>
+        // Verifica se o usuário está logado
+    const perfil = sessionStorage.getItem("perfil");
+    if (!perfil) {
+      window.location.href = "login.html"; // redireciona se não houver sessão
+    }
+    </script>
+
+    <img src="https://hugocursos.com.br/sistema/styles/img/cursos/25-09-2023-10-49-46-640.webp" alt="Imagem de Administração">
+</body>
+</html>

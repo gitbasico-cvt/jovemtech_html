@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Página do Usuario</title>
+</head>
+<body>
+    <script>
+        // Verifica se o usuário está logado
+    const perfil = sessionStorage.getItem("perfil");
+    if (!perfil) {
+      window.location.href = "login.html"; // redireciona se não houver sessão
+    }
+    </script>
+    <img src="https://i.ytimg.com/vi/dsLtcPMFcfw/maxresdefault.jpg" alt="Imagem de Administração">
+</body>
+</html>

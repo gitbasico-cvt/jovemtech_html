@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Consultar Usuários</title>
+</head>
+<body>
+
+<h1>Consultar Usuários</h1>
+
+<button id="btnConsultar">Listar Todos</button>
+
+<table id="tabelaUsuarios">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>CPF</th>
+      <th>Nome</th>
+      <th>Sexo</th>
+      <th>Número</th>
+      <th>Bairro</th>
+      <th>Estado</th>
+      <th>Município</th>
+      <th>CEP</th>
+      <th>Telefone</th>
+       <th>Data Cadastro</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Dados dos usuários serão inseridos aqui -->
+  </tbody>
+</table>
+
+<script>
+document.getElementById("btnConsultar").onclick = async () => {
+  const tbody = document.querySelector("#tabelaUsuarios tbody");
+  tbody.innerHTML = ""; // limpa tabela antes de inserir novos dados
+
+  try {
+    const res = await fetch("consultaUsuario.php");
+    const data = await res.json();
+
+    if (!data.ok) {
+      alert("Erro: " + data.error);
+      return;
+    }
+
+    // Ajuste: acessar data.data (como retornado pelo PHP)
+    data.data.forEach(u => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${u.idUsuario}</td>
+        <td>${u.cpf}</td>
+        <td>${u.nome}</td>
+        <td>${u.sexo}</td>
+        <td>${u.numero}</td>
+        <td>${u.bairro}</td>
+        <td>${u.estado}</td>
+        <td>${u.municipio}</td>
+        <td>${u.cep}</td>
+        <td>${u.telefone}</td>
+         <td>${u.data_cadastro}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+  } catch (err) {
+    alert("Falha na requisição: " + err.message);
+  }
+};
+</script>
+
+</body>
+</html>

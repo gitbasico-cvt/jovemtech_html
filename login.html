@@ -1,42 +1,66 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html> 
+<!-- Define que este documento é do tipo HTML5 -->
+
+<html lang="pt-BR"> 
+<!-- Início do documento HTML, atributo lang define o idioma principal da página como português do Brasil -->
+
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  <style>
-    body { font-family: Arial; margin: 50px; background: #f0f8ff; }
-    h1 { color: #004080; }
-    label { display: block; margin-top: 15px; }
-    input { padding: 5px; width: 250px; }
-    button { margin-top: 20px; padding: 10px 15px; background-color: #004080; color: white; border: none; cursor: pointer; border-radius: 4px; }
-    button:hover { background-color: #00264d; }
-    #out { margin-top: 20px; color: red; white-space: pre-wrap; }
-    a { display: block; margin-top: 15px; color: #004080; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
+  <meta charset="UTF-8"> 
+  <!-- Define o conjunto de caracteres como UTF-8 (permite acentuação e caracteres especiais) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- name="viewport" → indica que estamos configurando a "janela de visualização" do dispositivo.
+   content="width=device-width" → ajusta a largura da página para a largura da tela do dispositivo.
+   initial-scale=1.0" → define o zoom inicial da página em 100% (sem ampliar ou reduzir).
+  -->
+
+  <title>Login</title> 
+  <!-- Define o título da aba/janela do navegador -->
 </head>
+
 <body>
+<!-- Início do corpo visível da página -->
 
 <h1>Login</h1>
+<!-- Cabeçalho principal da página (título visível para o usuário) -->
 
-<label>Login:</label>
-<input type="text" id="login">
+<!-- Removi o envio automático do formulário -->
+<div>
+ <form id="formLogin">
+  <label>Login:</label>
+  <input type="text" id="login">
+  <!-- Campo de entrada de texto para o usuário digitar o login. -->
 
-<label>Senha:</label>
-<input type="password" id="senha">
+  <br><br>
 
-<button id="btnLogin">Entrar</button>
+  <label>Senha:</label>
+  <input type="password" id="senha">
+  <!-- Campo de entrada do tipo senha (os caracteres digitados ficam ocultos). -->
+     
+  <br><br>
+
+  <button type="reset">Limpar</button>
+  <!-- Botão para limpar -->
+
+  <button type="button" id="btnLogin">Entrar</button>
+  <!-- Botão que o usuário clica para enviar os dados de login. -->
+ 
+</div>
 
 <pre id="out"></pre>
+<!-- Caixa de saída de mensagens -->
 
 <a href="inserirLogin.html">Não tenho Cadastro?</a>
+<!-- Link para outra página, usada quando o usuário ainda não possui login. -->
 
 <script>
-document.getElementById("btnLogin").onclick = async () => {
+document.getElementById("btnLogin").onclick = async (e) => {
+  e.preventDefault(); // evita recarregar a página por engano
+
   const login = document.getElementById("login").value.trim();
   const senha = document.getElementById("senha").value;
   const out = document.getElementById("out");
-  out.textContent = "";
+
+  out.textContent = ""; // limpa mensagens anteriores
 
   if (!login || !senha) {
     out.textContent = "Preencha login e senha.";
@@ -53,20 +77,29 @@ document.getElementById("btnLogin").onclick = async () => {
     const data = await res.json();
 
     if (!data.ok) {
-      out.textContent = "Erro: " + data.error;
+      out.textContent = "Erro: " + (data.error || "Resposta inesperada do servidor");
       return;
     }
 
-    out.textContent = `✅ ${data.message}\nBem-vindo, ${data.user.login} (${data.user.perfil})`;
+    // Verifica o perfil do usuário e redireciona
+    sessionStorage.setItem("perfil", data.user.perfil); // salva o perfil na sessão
+    
+    if (data.user.perfil.toLowerCase() === "admin") {
+      window.location.href = "admin.html";
+    } else {
+      window.location.href = "user.html";
+    }
 
-    // Aqui você pode redirecionar para outra página
-     window.location.href = "consultaLogin.html";
 
   } catch (err) {
     out.textContent = "Falha na requisição: " + err.message;
   }
 };
+
 </script>
 
 </body>
+<!-- Fim do corpo da página -->
+
 </html>
+<!-- Fim do documento HTML -->
